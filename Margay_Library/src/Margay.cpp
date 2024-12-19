@@ -224,7 +224,7 @@ int Margay::begin(uint8_t *Vals, uint8_t numVals, String header_)
 		if (i % 2 == 1 && i < EEPROMLen - 1)
 		{
 			SN[Pos++] = '-'; // Place - between each SN category, post inc pos
-			// Pos += 1;
+							 // Pos += 1;
 		}
 		SN[19] = NULL; // Null terminate string
 	}
@@ -620,7 +620,7 @@ void Margay::initLogFile()
 		logStr("Time [UTC], Temp OB [C], Temp RTC [C], Bat [V], " + Header); // Log concatonated header (for old loggers)
 	else
 		logStr("Time [UTC], PresOB [mBar], RH_OB [%], TempOB [C], Temp RTC [C], Bat [V], " + Header); // Log concatonated header (for new loggers)
-	// logStr("Time [UTC], PresOB [mBar], RH_OB [%], TempOB [C], Temp RTC [C], Bat [V], " + Header); //Log concatonated header (for new loggers)
+																									  // logStr("Time [UTC], PresOB [mBar], RH_OB [%], TempOB [C], Temp RTC [C], Bat [V], " + Header); //Log concatonated header (for new loggers)
 }
 
 int Margay::logStr(String val)
@@ -745,7 +745,7 @@ String Margay::getOnBoardVals()
 		TempData = TempData - 273.15; // Get temp from on board thermistor
 	}
 
-	delay(10);
+	delay(1000);
 	float BatVoltage = getBatVoltage(); // Get battery voltage, Include voltage divider in math
 
 	// Temp[3] = Clock.getTemperature(); //Get tempreture from RTC //FIX!
@@ -850,7 +850,7 @@ void Margay::run(String (*update)(void), unsigned long logInterval) // Pass in f
 	}
 
 	if (ExtIntTripped)
-	{	// Defaults to just counter for now
+	{ // Defaults to just counter for now
 		// Serial.println("TIP!"); //DEBUG!
 		ExtInt_count++;
 		ExtIntTripped = false; // Clear interrupt flag flag
@@ -1102,8 +1102,8 @@ void Margay::sleepNow() // here we put the arduino to sleep
 	//     SPI.begin();
 	turnOnSDcard();
 	ADCSRA = 135; // DEBUG!
-	// digitalWrite(VSwitch_Pin, HIGH);  //DEBUG!
-	// pinMode(SD_CS, OUTPUT); //Disconnect SD chip slect pin
+				  // digitalWrite(VSwitch_Pin, HIGH);  //DEBUG!
+				  // pinMode(SD_CS, OUTPUT); //Disconnect SD chip slect pin
 }
 
 void Margay::turnOffSDcard()
