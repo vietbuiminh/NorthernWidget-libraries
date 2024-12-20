@@ -695,9 +695,9 @@ float Margay::getTemp(temp_val val)
 float Margay::getBatVoltage()
 {
 	ADMUX = 0b00000000;	 // Setup voltage ref
-	delay(10);			 // Alow for >1 clock cycle to set values
+	delay(1000);		 // Alow for >1 clock cycle to set values
 	ADCSRA = 0b10000111; // Enable ADC, set clock divider to max to deal with high impedance input
-	delay(10);			 // Alow for >1 clock cycle to set values
+	delay(1000);		 // Alow for >1 clock cycle to set values
 	float Vcc = 3.3;
 	float BatVoltage = analogRead(BatSense_Pin);			  // Get (divided) battery voltage
 	float Comp = (1.8 / 3.3) * 1024.0 / analogRead(VRef_Pin); // Find compensation value with VRef due to Vcc error
