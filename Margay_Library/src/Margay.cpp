@@ -699,8 +699,9 @@ float Margay::getBatVoltage()
 	ADCSRA = 0b10000111; // Enable ADC, set clock divider to max to deal with high impedance input
 	delay(1000);		 // Alow for >1 clock cycle to set values
 	float Vcc = 3.3;
-	float BatVoltage = analogRead(BatSense_Pin);			  // Get (divided) battery voltage
-	float Comp = (1.8 / 3.3) * 1024.0 / analogRead(VRef_Pin); // Find compensation value with VRef due to Vcc error
+	float BatVoltage = analogRead(BatSense_Pin); // Get (divided) battery voltage
+	// float Comp = (1.8 / 3.3) * 1024.0 / analogRead(VRef_Pin); // Find compensation value with VRef due to Vcc error
+	float Comp = 1.0;
 	if (Model == 0)
 		Comp = 1.0;													  // Overide comp calculation since many v0.0 models do not have ref equiped
 	BatVoltage = BatVoltage * BatteryDivider * Comp * (Vcc / 1024.0); // Compensate for voltage divider and ref voltage error
