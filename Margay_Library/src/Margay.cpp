@@ -703,8 +703,8 @@ float Margay::getBatVoltage()
 	// float Comp = (1.8 / 3.3) * 1024.0 / analogRead(VRef_Pin); // Find compensation value with VRef due to Vcc error
 	float Comp = 1.0;
 	if (Model == 0)
-		Comp = 1.0;													  // Overide comp calculation since many v0.0 models do not have ref equiped
-	BatVoltage = BatVoltage * BatteryDivider * Comp * (Vcc / 1024.0); // Compensate for voltage divider and ref voltage error
+		Comp = 1.0; // Overide comp calculation since many v0.0 models do not have ref equiped
+	// BatVoltage = BatVoltage * BatteryDivider * Comp * (Vcc / 1024.0); // Compensate for voltage divider and ref voltage error
 	return BatVoltage;
 }
 
